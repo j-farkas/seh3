@@ -36,7 +36,7 @@ getImages(){
   })
   let words = this.state.title + bolded.join(" ");
   console.log(words);
-  fetch('api/SampleData/ImageList/'+words)
+  fetch('images/'+words)
     .then(response => response.json())
     .then(data => {
       this.setState({ images: data});
@@ -58,7 +58,7 @@ createPpt(){
   let words = bolded.join(" ");
   let selected = this.state.images.filter(e=>
   (e.selected === true))
-  let jason = qs.stringify({
+  let jason = JSON.stringify({
         "title": this.state.title,
         "text": words,
         "imageList": selected
@@ -66,12 +66,17 @@ createPpt(){
     console.log(jason);
     axios({
       method: 'post',
-      url: 'api/sampleData/CreatePpt/',
+      url: 'images',
       data:{
-        jason,
+       title: this.state.title,
+       text: words,
+       imageList: selected
       },
       headers: {
         'Content-Type': 'application/json',
+        title: this.state.title,
+       text: words,
+       imageList: selected
       },
     }).then((response) =>
   {
@@ -80,14 +85,6 @@ createPpt(){
 (error) => {
   console.log(error)
 });
-  // fetch('api/sampleData/CreatePpt'),{
-  //   method: 'GET',
-  //   headers:{
-  //     'Content-Type': 'application/json'
-  //   },
-  //   credentials: "same-origin",
-  //   body: jason
-  //   }
 }
 
 selectImage(uri){
