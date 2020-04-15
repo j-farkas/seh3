@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Office;
+using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 
 namespace seh3.Models
@@ -69,10 +70,10 @@ namespace seh3.Models
   {
     public string title { get; set; }
     public string text { get; set; }
-    public List<Images> imageList { get; set; }
+    public List<String> imageList { get; set; }
 
     public PptSlide(){
-      imageList = new List<Images>();
+      imageList = new List<String>();
       title = "";
       text = "";
     }
@@ -100,37 +101,37 @@ namespace seh3.Models
       return images;
     }
 
-    // public void MakePpt(){
-    //   // IPresentation pptxDoc = Presentation.Create();
-    //   //
-    //   // ISlide slide = pptxDoc.Slides.Add(SlideLayoutType.Blank);
-    //   //
-    //   // IShape shape = slide.AddTextBox(10,10,500,100);
-    //   //
-    //   // shape.TextBody.AddParagraph(title);
-    //   //
-    //   //
-    //   // pptxDoc.Save("Sample.pptx");
-    //   //
-    //   // pptxDoc.Close();
-    //   for(int i = 0; i < imageList.Count(); i++)
-    //   {
-    //     Application pptApplication = new Application();
-    //     Presentation pptpresentation = pptApplication.Presentations.Add(Microsoft.Office.Core.MsoTriState.msoTrue);
-    //     Microsoft.Office.Interop.PowerPoint.Slides slides;
-    //     Microsoft.Office.Interop.PowerPoint._Slide slide;
-    //     Microsoft.Office.Interop.PowerPoint.TextRange objText;
+    public void MakePpt(){
 
-    //     Microsoft.Office.Interop.PowerPoint.CustomLayout custLayout = pptpresentation.SlideMaster.CustomLayouts[Microsoft.Office.Interop.PowerPoint.ppSlideLayout.ppLayoutText];
-    //     slides=pptpresentation.Slides;
-    //     slide=slides.AddSlide(i+1,custLayout);
-    //     objText=slide.Shapes[1].TextFrame.TextRange;
-    //     objText.Text = "Title";
+// //Application pptApplication = new Application();
+// Console.WriteLine("1");
+// Microsoft.Office.Interop.PowerPoint.Slides slides;
+// Microsoft.Office.Interop.PowerPoint._Slide slide;
+// Microsoft.Office.Interop.PowerPoint.TextRange objText;
+// Presentation pptPresentation = new Microsoft.Office.Interop.PowerPoint.Application().Presentations.Add(MsoTriState.msoTrue);
 
-    //     Microsoft.Office.Interop.PowerPoint.Shape shape = slide.Shapes[2];
-    //     slide.Shapes.AddPicture(imageList[i], Microsoft.Office.Core.MsoTristate.msoFalse,Microsoft.Office.Core.MsoTriState.msoTrue,shape.Left,shape.Top, shape.Width,shape.Height);
-    //   }
-    //   pptpresentation.SaveAs("newslide.pptx", Microsoft.Office.Interop.PowerPoint.ppSaveAsFileType.ppSaveAsDefault,Microsoft.Office.Core.MsoTriState.msoTrue);
-    // }
+// Microsoft.Office.Interop.PowerPoint.CustomLayout customLayout = pptPresentation.SlideMaster.CustomLayouts[Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutText];
+
+// slides = pptPresentation.Slides;
+// slide = slides.AddSlide(1, customLayout);
+
+// objText = slide.Shapes[1].TextFrame.TextRange;
+// objText.Text = title;
+// objText.Font.Name = "Arial";
+// objText.Font.Size = 32;
+
+// objText = slide.Shapes[2].TextFrame.TextRange;
+// objText.Text = text;
+
+// Microsoft.Office.Interop.PowerPoint.Shape shape = slide.Shapes[2];
+// foreach(string image in imageList)
+// {
+//     slide.Shapes.AddPicture(imageList[0],Microsoft.Office.Core.MsoTriState.msoFalse,Microsoft.Office.Core.MsoTriState.msoTrue,shape.Left, shape.Top, shape.Width, shape.Height);
+// }
+
+
+
+// pptPresentation.SaveAs(@"c:\temp\test.pptx", Microsoft.Office.Interop.PowerPoint.PpSaveAsFileType.ppSaveAsDefault, MsoTriState.msoTrue);   
+    }
   }
 }

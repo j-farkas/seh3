@@ -34,17 +34,26 @@ namespace seh3.Controllers
         [HttpPost]
         public void Index()
         {
-            Console.WriteLine(Request.Headers.Count);
-
+            String imageList = "";
+            PptSlide ppt = new PptSlide();
             foreach(var data in Request.Headers){
-                Console.WriteLine(data);
+                if(data.Key == "text")
+                {
+                    ppt.text = data.Value;
+                }else if(data.Key == "title")
+                {
+                    ppt.title = data.Value;
+                }else if(data.Key == "imageList")
+                {
+                    imageList = data.Value;
+                    
+                }
             }
-            // var options = new JsonSerializerOptions
-            // {
-            //     AllowTrailingCommas = true
-            // };
-            //  PptSlide ppt = JsonSerializer.Deserialize<PptSlide>(json);
-            //  Console.WriteLine(ppt.title);
+            foreach(String image in imageList.Split('`'))
+            {
+                ppt.imageList.Add(image);
+            }
+           // ppt.MakePpt();
         }
         
     }
